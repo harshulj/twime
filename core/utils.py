@@ -22,7 +22,7 @@ def set_user(user, twitter_user):
     user.following_count = twitter_user.friends_count
     user.listed_count = twitter_user.listed_count
     user.favourites_count = twitter_user.favourites_count
-    if twitter_user.statuses_count > 0:
+    if hasattr(twitter_user, 'status'):
         user.last_status_on = twitter_user.status.created_at
     return user
 
@@ -31,3 +31,9 @@ def fetch_friends(user):
     for tu in tweepy.Cursor(API.friends, user.username).items():
         u = User.objects.update_or_create_from_twitter(tu)
         u.followers.add(user)
+
+def fetch_followers(user):
+    from .models import User
+    for tu in tweepy.Cursor(API.followers, user.username).items():
+        u = User.objects.update_or_create_from_twitter(tu)
+        user.followers.add(u)

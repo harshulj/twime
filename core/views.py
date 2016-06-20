@@ -15,4 +15,5 @@ def best_time_to_post(request):
     twitter_user = API.get_user(twitter_username)
     user = User.objects.update_or_create_from_twitter(twitter_user)
     fetch_friends(user)
+    fetch_followers(user)
     return JsonResponse({'username': twitter_username, 'best_time': user.best_time, 'best_day': user.best_day})
