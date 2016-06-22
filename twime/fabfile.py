@@ -28,14 +28,12 @@ def rebuild_index():
 def start():
     code_dir = env.base_dir
     with cd(code_dir):
-        run('supervisorctl start uwsgi')
+        run('supervisorctl start twime_uwsgi')
 
 def reload():
     code_dir = env.base_dir
     with cd(code_dir):
-        run('supervisorctl restart uwsgi')
-        run('supervisorctl restart celery_beat')
-        run('supervisorctl restart celery_worker')
+        run('supervisorctl restart twime_uwsgi')
 
 def deploy():
     code_dir = env.base_dir
