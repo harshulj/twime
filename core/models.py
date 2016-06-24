@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.contrib.postgres.fields import JSONField
 
 from .constants import Days
 from .managers import UserManager
@@ -23,7 +22,6 @@ class User(models.Model):
     favourites_count    = models.PositiveIntegerField(default=0)
     profile_image_url   = models.URLField(blank=True)
 
-    raw         = JSONField(default={}, blank=True)
 
     account_created_on  = models.DateTimeField(blank=True)
     last_status_on  = models.DateTimeField(blank=True, null=True)
