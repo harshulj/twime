@@ -55,17 +55,24 @@ WSGI_APPLICATION = 'twime.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'twime',
-        'USER': 'twime',
-        'PASSWORD': 'twime1!',
-        'HOST': 'localhost',
-        'PORT': '',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite3'
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'twime',
+            'USER': 'twime',
+            'PASSWORD': 'twime1!',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -87,5 +94,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-TWITTER_CONSUMER_KEY = ''
-TWITTER_CONSUMER_SECRET = ''
+TWITTER_CONSUMER_KEY = 'wup1h16vcaqUJBxFxniqgQtZh'
+TWITTER_CONSUMER_SECRET = 'jMdKJGF4Haz8qXQiiqrVlaQWob8KJRDR5wCJEquzcjk4AuDe3D'
